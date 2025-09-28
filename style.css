@@ -1,90 +1,613 @@
-*{
-   margin: 0;
+* {
+    margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: cursive; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
- .container{
-    width: 100%;
-    min-height:100vh;
-    padding: 10px;
-    background:linear-gradient(135deg,#153677,#4e085f);
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
- }
+:root {
+    --primary-color: #6366f1;
+    --secondary-color: #8b5cf6;
+    --accent-color: #06b6d4;
+    --background-color: #f8fafc;
+    --text-color: #334155;
+    --border-color: #e2e8f0;
+    --success-color: #10b981;
+    --warning-color: #f59e0b;
+    --danger-color: #ef4444;
+}
 
- .todo-app{
-    width: 100%;
-    max-width: 540px;
-    background: #fff;
-    margin: 100px auto 20px;
-    padding: 40px 30px 70px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    border: #002765 2px solid;
- }
- .todo-app h2{
-    color: #002765;
+body {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Login Styles */
+.login-container {
     display: flex;
+    justify-content: center;
     align-items: center;
-    margin-bottom: 20px;
- }
- .todo-app h2 img{
-    width: 30px;
-    margin-left: 10px;
- 
+    min-height: 100vh;
+}
 
- }
- .row{
+.login-form {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+}
+
+.login-form h2 {
+    color: var(--primary-color);
+    margin-bottom: 30px;
+    font-size: 2rem;
+}
+
+.login-form input {
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+.login-form input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.login-form button {
+    width: 100%;
+    padding: 15px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-top: 20px;
+}
+
+.login-form button:hover {
+    background: var(--secondary-color);
+}
+
+/* Main App Styles */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.app-header {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 20px;
     display: flex;
     justify-content: space-between;
-    margin-bottom: 20px;
     align-items: center;
-    background-color: #edeef0;
-    border-radius: 30px;
-    padding-left: 20px;
-  
- }
-   .row input{
-      width: 80%;
-      height: 40px;
-      border: none;
-      outline: none;
-      font-size: 16px;
-      background-color: #edeef0;
-      font-weight: 14px;
-   }
-   .row button{
-      width: 18%;
-      height: 40px;
-      border: none;
-      outline: none;
-      background-color: #002765;
-      color: #fff;
-      font-size: 16px;
-      border-radius: 30px;
-      cursor: pointer;
-      transition: 0.3s;
-      
-   }
-   .row button:hover{
-      background-color: #002765;
-   }
-   ul li{
-      list-style: none;
-      font-size: 17px;
-      padding: 12px 8px 12px 50px;
-      user-select: none;
-      cursor: pointer;
-      position: relative;
-   }
-   ul li::before{
-      content: '';
-      position: absolute;
-      height: 28px;
-      width: 28px;
-      border-radius: 50%;
-      background-image: url(images/unchecked.png);
-      background-size: cover;
-   }
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+#profile-photo {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--primary-color);
+}
+
+.user-info div h3 {
+    color: var(--text-color);
+    margin-bottom: 5px;
+}
+
+.user-info div p {
+    color: #64748b;
+    font-size: 14px;
+}
+
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.progress-tracker {
+    text-align: center;
+}
+
+.progress-bar {
+    width: 150px;
+    height: 8px;
+    background: var(--border-color);
+    border-radius: 4px;
+    margin-bottom: 5px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--success-color);
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+#progress-text {
+    font-size: 14px;
+    color: var(--text-color);
+}
+
+.logout-btn {
+    padding: 10px 20px;
+    background: var(--danger-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+}
+
+.logout-btn:hover {
+    background: #dc2626;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+/* Categories Styles */
+.categories-section {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.categories-section h3 {
+    color: var(--text-color);
+    margin-bottom: 15px;
+}
+
+.categories-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+}
+
+.category {
+    background: var(--background-color);
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: 2px solid transparent;
+}
+
+.category:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.category.active {
+    border-color: var(--primary-color);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+}
+
+.category i {
+    font-size: 24px;
+    margin-bottom: 8px;
+    display: block;
+}
+
+/* Todo Section Styles */
+.todo-section {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.todo-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.time-scheduler {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.time-scheduler input {
+    padding: 8px;
+    border: 2px solid var(--border-color);
+    border-radius: 5px;
+}
+
+.time-scheduler button {
+    padding: 8px 15px;
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.time-scheduler button:hover {
+    background: #0891b2;
+}
+
+.todo-app {
+    width: 100%;
+}
+
+.row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.row input {
+    flex: 1;
+    padding: 15px;
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+.row button {
+    padding: 15px 25px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s;
+    white-space: nowrap;
+}
+
+.row button:hover {
+    background: var(--secondary-color);
+}
+
+.task-time-display {
+    margin-bottom: 15px;
+    padding: 10px;
+    background: var(--background-color);
+    border-radius: 8px;
+    text-align: center;
+}
+
+#selected-time {
+    color: var(--accent-color);
+    font-weight: 600;
+}
+
+ul {
+    list-style: none;
+}
+
+ul li {
+    padding: 15px;
+    margin-bottom: 10px;
+    background: var(--background-color);
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s;
+    border-left: 4px solid transparent;
+}
+
+ul li:hover {
+    transform: translateX(5px);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+ul li.checked {
+    background: #d1fae5;
+    text-decoration: line-through;
+    color: #065f46;
+    border-left-color: var(--success-color);
+}
+
+ul li.scheduled {
+    border-left-color: var(--accent-color);
+}
+
+ul li.overdue {
+    border-left-color: var(--danger-color);
+    background: #fef2f2;
+}
+
+.task-content {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    flex: 1;
+}
+
+.task-text {
+    font-weight: 500;
+}
+
+.task-meta {
+    display: flex;
+    gap: 15px;
+    font-size: 12px;
+    color: #64748b;
+}
+
+.task-time-badge {
+    background: var(--accent-color);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+}
+
+.task-overdue {
+    background: var(--danger-color);
+}
+
+.task-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.task-actions button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 5px;
+    transition: all 0.3s;
+    color: var(--text-color);
+}
+
+.task-actions button:hover {
+    background: var(--border-color);
+    transform: scale(1.1);
+}
+
+.edit-btn:hover {
+    color: var(--accent-color);
+}
+
+.delete-btn:hover {
+    color: var(--danger-color);
+}
+
+/* Modal Styles */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 450px;
+    position: relative;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    animation: modalSlideIn 0.3s ease-out;
+    transform: translateY(0);
+    margin: 20px;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.close, .close-edit {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--text-color);
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s;
+}
+
+.close:hover, .close-edit:hover {
+    background: var(--border-color);
+    transform: rotate(90deg);
+}
+
+.modal-content h3 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.modal-content input {
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+.modal-content input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 25px;
+}
+
+.modal-buttons button {
+    flex: 1;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+#save-edit-btn, #save-category-btn {
+    background: var(--success-color);
+    color: white;
+}
+
+#save-edit-btn:hover, #save-category-btn:hover {
+    background: #059669;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3);
+}
+
+#cancel-edit-btn {
+    background: var(--border-color);
+    color: var(--text-color);
+}
+
+#cancel-edit-btn:hover {
+    background: #cbd5e1;
+    transform: translateY(-2px);
+}
+
+/* Edit Modal Specific Styles */
+#edit-modal .modal-content {
+    max-width: 500px;
+}
+
+#edit-task-text {
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+#edit-task-time {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+/* Category Modal Specific Styles */
+#category-modal .modal-content {
+    max-width: 400px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .app-header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .header-controls {
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+    }
+    
+    .logout-btn {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .categories-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .todo-header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .row {
+        flex-direction: column;
+    }
+    
+    .task-actions {
+        flex-direction: column;
+    }
+    
+    .modal-content {
+        margin: 15px;
+        padding: 25px 20px;
+    }
+    
+    .modal-buttons {
+        flex-direction: column;
+    }
+    
+    .modal-buttons button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-content {
+        margin: 10px;
+        padding: 20px 15px;
+    }
+    
+    .modal-content h3 {
+        font-size: 1.3rem;
+    }
+    
+    .modal-content input {
+        padding: 12px;
+        font-size: 14px;
+    }
+}

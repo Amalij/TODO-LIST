@@ -3,30 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TODO LIST</title>
+    <title> To-do List</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    
 </head>
 <body>
- <div class="container">
-    <div class="todo-app">
-        <h2>TODO LIST <img src="images/icon (1).png" alt="img"></h2>
-        <div class="row">
-            <input type="text" id="input-box" placeholder="Add your new todo">
-            <button id="add-btn">Add</button>
+    <!-- Login Section -->
+    <div id="login-section" class="login-container">
+        <div class="login-form">
+            <h2>Welcome Back</h2>
+            <input type="text" id="username-input" placeholder="Enter your name">
+            <input type="file" id="profile-photo-input" accept="image/*">
+            <button id="login-btn">Get Started</button>
         </div>
-        <ul id="list-container">
-            <li>Task 01</li>
-            <li>Task 02</li>
-            <li>Task 03</li>
-        </ul>
     </div>
 
+    <!-- Main App -->
+    <div id="main-app" class="container hidden">
+        <!-- Header with User Info -->
+       <header class="app-header">
+    <div class="user-info">
+        <img id="profile-photo" src="https://via.placeholder.com/50" alt="Profile Photo">
+        <div>
+            <h3 id="welcome-message">Hello, User!</h3>
+            <p id="current-date"></p>
+        </div>
+    </div>
+    <div class="header-controls">
+        <div class="progress-tracker">
+            <div class="progress-bar">
+                <div id="progress-fill" class="progress-fill"></div>
+            </div>
+            <span id="progress-text">0% Complete</span>
+        </div>
+        <button id="logout-btn" class="logout-btn">
+            <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+    </div>
+</header>
 
- </div>
+        <!-- Categories Section -->
+        <div class="categories-section">
+            <h3>Categories</h3>
+            <div class="categories-container">
+                <div class="category active" data-category="daily">
+                    <i class="fas fa-sun"></i>
+                    <span>Daily Tasks</span>
+                </div>
+                <div class="category" data-category="work">
+                    <i class="fas fa-briefcase"></i>
+                    <span>Work</span>
+                </div>
+                <div class="category" data-category="personal">
+                    <i class="fas fa-heart"></i>
+                    <span>Personal</span>
+                </div>
+                <div class="category" data-category="shopping">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Shopping</span>
+                </div>
+                <div class="category" data-category="health">
+                    <i class="fas fa-dumbbell"></i>
+                    <span>Health</span>
+                </div>
+                <div class="category" data-category="add-new">
+                    <i class="fas fa-plus"></i>
+                    <span>Add New</span>
+                </div>
+            </div>
+        </div>
 
-    
+        <!-- Todo List Section -->
+        <div class="todo-section">
+            <div class="todo-header">
+                <h3 id="current-category">Daily Tasks</h3>
+                <div class="time-scheduler">
+                    <input type="time" id="schedule-time">
+                    <button id="schedule-all-btn">Schedule All</button>
+                </div>
+            </div>
 
+            <div class="todo-app">
+                <div class="row">
+                    <input type="text" id="input-box" placeholder="Add your new todo">
+                    <button id="add-btn">Add Task</button>
+                </div>
+                <div class="task-time-display">
+                    <span id="selected-time">No time scheduled</span>
+                </div>
+                <ul id="list-container"></ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Category Modal -->
+    <div id="category-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Add New Category</h3>
+            <input type="text" id="new-category-name" placeholder="Category name">
+            <button id="save-category-btn">Save Category</button>
+        </div>
+    </div>
+
+    <!-- Edit Task Modal -->
+    <div id="edit-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-edit">&times;</span>
+            <h3>Edit Task</h3>
+            <input type="text" id="edit-task-text" placeholder="Task description">
+            <input type="time" id="edit-task-time">
+            <div class="modal-buttons">
+                <button id="save-edit-btn">Save Changes</button>
+                <button id="cancel-edit-btn">Cancel</button>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
